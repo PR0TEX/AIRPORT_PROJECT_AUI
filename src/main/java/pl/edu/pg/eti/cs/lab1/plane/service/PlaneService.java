@@ -40,13 +40,8 @@ public class PlaneService {
     public void create(Plane plane) {
         repository.create(plane);
     }
-
-    public void delete(Plane plane) {
-        repository.delete(plane);
-    }
-
     public void delete(Integer id) {
-        delete(this.find(id).get());
+        repository.delete(id);
     }
 
     public void update(Plane plane) {

@@ -32,8 +32,8 @@ public class PlaneRepository implements Repository<Plane, Integer> {
     }
 
     @Override
-    public void delete(Plane plane) {
-        dataStore.deletePlane(plane.getId());
+    public void delete(Integer id) {
+        dataStore.deletePlane(id);
     }
 
     @Override

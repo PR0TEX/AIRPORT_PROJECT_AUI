@@ -35,8 +35,8 @@ public class CarrierRepository implements Repository<Carrier, String> {
     }
 
     @Override
-    public void delete(Carrier carrier) {
-        dataStore.deleteCarrier(carrier.getName());
+    public void delete(String name) {
+        dataStore.deleteCarrier(name);
     }
 
     @Override

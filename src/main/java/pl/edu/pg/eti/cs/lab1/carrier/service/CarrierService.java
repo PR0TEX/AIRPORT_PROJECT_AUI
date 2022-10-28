@@ -14,23 +14,23 @@ public class CarrierService {
     private final CarrierRepository repository;
 
     @Autowired
-    CarrierService(CarrierRepository carrierRepository){
+    CarrierService(CarrierRepository carrierRepository) {
         this.repository = carrierRepository;
     }
 
-    public Optional<Carrier> find(String name){
+    public Optional<Carrier> find(String name) {
         return repository.find(name);
     }
 
-    public List<Carrier> findAll(){
+    public List<Carrier> findAll() {
         return repository.findAll();
     }
 
-    public List<Carrier> findAll(String destination){
+    public List<Carrier> findAll(String destination) {
         return repository.findAllByDestination(destination);
     }
 
-    public void create(String name, String nationality, List<String> flightDestinations, List<Plane> planes){
+    public void create(String name, String nationality, List<String> flightDestinations, List<Plane> planes) {
         Carrier carrier = Carrier.builder()
                 .name(name)
                 .nationality(nationality)
@@ -40,19 +40,16 @@ public class CarrierService {
 
         create(carrier);
     }
-    public void create(Carrier carrier){
+
+    public void create(Carrier carrier) {
         repository.create(carrier);
     }
 
-    public void delete(String name){
-        delete(find(name).get());
-    }
-    public void delete(Carrier carrier){
-        repository.delete(carrier);
+    public void delete(String name) {
+        repository.delete(name);
     }
 
-
-    public void update(Carrier carrier){
+    public void update(Carrier carrier) {
         repository.update(carrier);
     }
 }
