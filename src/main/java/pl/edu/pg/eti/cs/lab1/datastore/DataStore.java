@@ -6,6 +6,7 @@ import pl.edu.pg.eti.cs.lab1.plane.entity.Plane;
 import pl.edu.pg.eti.cs.lab1.serialization.CloningUtility;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Component
 public class DataStore {
@@ -76,7 +77,19 @@ public class DataStore {
 
     public synchronized void deletePlane(Integer id) {
         findPlane(id).ifPresentOrElse(
-                plane -> planes.remove(plane),
+                (plane) -> {
+                    planes.remove(plane);
+                    List<Carrier> selectedCarriers = carriers.stream()
+                            .filter(carrier -> carrier.getPlanes().contains(plane)).toList();
+
+                    for (Carrier c : selectedCarriers) {
+                        c.getPlanes().remove(
+                                c.getPlanes().stream()
+                                        .filter(p -> p.getId() == id)
+                                        .findFirst()
+                                        .get());
+                    }
+                },
                 () -> {
                     throw new IllegalArgumentException(
                             String.format("The plane with id \"%d\" does not exist", id));

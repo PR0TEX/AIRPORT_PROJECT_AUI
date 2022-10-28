@@ -31,31 +31,24 @@ public class CommandLine implements CommandLineRunner {
         while (running) {
             System.out.println("Enter command");
             switch (scanner.nextLine()) {
-                case "1" -> carrierService.findAll().forEach(System.out::println);
-                case "2" -> planeService.findAll().forEach(System.out::println);
-                case "3" -> {
-                    System.out.println("Enter destination");
-                    String destination = scanner.nextLine();
-                    carrierService.findAll(destination).forEach(System.out::println);
-                }
-                case "4" -> {
-                    System.out.println("AirPort is closing...");
-                    running = false;
-                }
-                case "5" -> printCommands();
-                case "6" -> {
+                case "1" -> {
                     System.out.println("Enter Plane or Carrier");
                     category = scanner.nextLine();
                     if (category.equals("Plane")) {
-                        addPlane();
+                        planeService.findAll().forEach(System.out::println);
                     } else if (category.equals("Carrier")) {
-                        addCarrier();
+                        carrierService.findAll().forEach(System.out::println);
                     } else {
                         throw new IllegalArgumentException(
                                 String.format("The category \"%s\" does not exist", category));
                     }
                 }
-                case "7" -> {
+                case "2" -> {
+                    System.out.println("Enter destination");
+                    String destination = scanner.nextLine();
+                    carrierService.findAll(destination).forEach(System.out::println);
+                }
+                case "3" -> {
                     System.out.println("Enter Plane or Carrier");
                     category = scanner.nextLine();
                     if (category.equals("Plane")) {
@@ -69,6 +62,23 @@ public class CommandLine implements CommandLineRunner {
                                 String.format("The category \"%s\" does not exist", category));
                     }
                 }
+                case "4" -> {
+                    System.out.println("Enter Plane or Carrier");
+                    category = scanner.nextLine();
+                    if (category.equals("Plane")) {
+                        addPlane();
+                    } else if (category.equals("Carrier")) {
+                        addCarrier();
+                    } else {
+                        throw new IllegalArgumentException(
+                                String.format("The category \"%s\" does not exist", category));
+                    }
+                }
+                case "5" -> printCommands();
+                case "6" -> {
+                    System.out.println("AirPort is closing...");
+                    running = false;
+                }
             }
         }
     }
@@ -76,21 +86,18 @@ public class CommandLine implements CommandLineRunner {
 
     private void printCommands() {
         System.out.println("Available commands");
-        System.out.println("1 - all carriers");
-        System.out.println("2 - all planes");
-        System.out.println("3 - all carriers flying to a specific destination");
-        System.out.println("4 - stop application");
+        System.out.println("1 - print all elements");
+        System.out.println("2 - all carriers flying to a specified destination");
+        System.out.println("3 - delete element");
+        System.out.println("4 - add element");
         System.out.println("5 - print commands");
-        System.out.println("6 - add element");
-        System.out.println("7 - delete element");
+        System.out.println("6 - stop application");
 
     }
 
     private void addPlane() {
-        int id, maxWeightPayload, maxPeoplePayload;
+        int maxWeightPayload, maxPeoplePayload;
         String manufacturer, model;
-        System.out.println("Enter id");
-        id = scanner.nextInt();
         scanner.nextLine();
         System.out.println("Enter manufacturer");
         manufacturer = scanner.nextLine();
@@ -101,7 +108,7 @@ public class CommandLine implements CommandLineRunner {
         System.out.println("Enter maxPeoplePayload");
         maxPeoplePayload = scanner.nextInt();
 
-        planeService.create(id, manufacturer, model, maxWeightPayload, maxPeoplePayload);
+        planeService.create(manufacturer, model, maxWeightPayload, maxPeoplePayload);
     }
 
     private void addCarrier() {

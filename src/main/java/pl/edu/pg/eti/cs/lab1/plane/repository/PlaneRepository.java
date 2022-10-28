@@ -11,7 +11,6 @@ import java.util.Optional;
 @org.springframework.stereotype.Repository
 public class PlaneRepository implements Repository<Plane, Integer> {
     private final DataStore dataStore;
-
     @Autowired
     public PlaneRepository(DataStore dataStore) {
         this.dataStore = dataStore;

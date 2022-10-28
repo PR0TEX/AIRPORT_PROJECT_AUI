@@ -11,7 +11,7 @@ import java.util.Optional;
 @Service
 public class PlaneService {
     private final PlaneRepository repository;
-
+    private static int id=0;
     @Autowired
     PlaneService(PlaneRepository planeRepository) {
         this.repository = planeRepository;
@@ -25,9 +25,9 @@ public class PlaneService {
         return repository.findAll();
     }
 
-    public void create(int id, String manufacturer, String model, int maxWeightPayload, int maxPeoplePayload) {
+    public void create(String manufacturer, String model, int maxWeightPayload, int maxPeoplePayload) {
         Plane plane = Plane.builder()
-                .id(id)
+                .id(id++)
                 .manufacturer(manufacturer)
                 .model(model)
                 .maxWeightPayload(maxWeightPayload)
