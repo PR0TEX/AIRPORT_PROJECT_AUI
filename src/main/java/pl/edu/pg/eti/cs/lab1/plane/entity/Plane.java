@@ -1,11 +1,13 @@
-package pl.edu.pg.eti.cs.lab1.entities;
+package pl.edu.pg.eti.cs.lab1.plane.entity;
 
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.io.Serializable;
 
 @Getter
 @Setter
+@SuperBuilder
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @ToString

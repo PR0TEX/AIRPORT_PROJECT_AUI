@@ -1,6 +1,6 @@
 package pl.edu.pg.eti.cs.lab1.serialization;
+
 import lombok.extern.java.Log;
-import pl.edu.pg.eti.cs.lab1.entities.Carrier;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
