@@ -4,6 +4,10 @@ import lombok.*;
 import lombok.experimental.SuperBuilder;
 import pl.edu.pg.eti.cs.lab1.plane.entity.Plane;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.List;
 
@@ -14,9 +18,13 @@ import java.util.List;
 @NoArgsConstructor
 @ToString
 @EqualsAndHashCode
+@Entity
+@Table(name = "carriers")
 public class Carrier implements Serializable {
+    @Id
     private String name;
     private String nationality;
     private List<String> flightDestinations;
+    @OneToMany(mappedBy = "plane")
     private List<Plane> planes;
 }
