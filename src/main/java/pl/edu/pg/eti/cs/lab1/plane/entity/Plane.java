@@ -2,10 +2,9 @@ package pl.edu.pg.eti.cs.lab1.plane.entity;
 
 import lombok.*;
 import lombok.experimental.SuperBuilder;
+import pl.edu.pg.eti.cs.lab1.carrier.entity.Carrier;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Getter
@@ -18,10 +17,13 @@ import java.io.Serializable;
 @Entity
 @Table(name = "planes")
 public class Plane implements Serializable {
-    @Id
+    @Id //TODO add autogeneration
     private int id;
     private String manufacturer;
     private String model;
     private int maxWeightPayload;
     private int maxPeoplePayload;
+    @ManyToOne
+    @JoinColumn(name="carrier")
+    private Carrier carrier;
 }

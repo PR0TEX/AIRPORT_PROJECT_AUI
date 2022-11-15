@@ -44,11 +44,11 @@ public class CarrierRepository implements Repository<Carrier, String> {
         dataStore.updateCarrier(carrier);
     }
 
-    public List<Carrier> findAllByDestination(String destination) {
-        return dataStore.findAllCarriers().stream()
-                .filter(carrier -> carrier.getFlightDestinations().contains(destination))
-                .map(CloningUtility::clone)
-                .collect(Collectors.toList());
-    }
+//    public List<Carrier> findAllByDestination(String destination) {
+//        return dataStore.findAllCarriers().stream()
+//                .filter(carrier -> carrier.getFlightDestinations().contains(destination))
+//                .map(CloningUtility::clone)
+//                .collect(Collectors.toList());
+//    }
 
 }

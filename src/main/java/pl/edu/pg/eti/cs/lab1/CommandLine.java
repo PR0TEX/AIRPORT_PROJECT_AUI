@@ -46,7 +46,7 @@ public class CommandLine implements CommandLineRunner {
                 case "2" -> {
                     System.out.println("Enter destination");
                     String destination = scanner.nextLine();
-                    carrierService.findAll(destination).forEach(System.out::println);
+                    //carrierService.findAll(destination).forEach(System.out::println);
                 }
                 case "3" -> {
                     System.out.println("Enter Plane or Carrier");

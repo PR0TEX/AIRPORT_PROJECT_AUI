@@ -26,15 +26,15 @@ public class CarrierService {
         return repository.findAll();
     }
 
-    public List<Carrier> findAll(String destination) {
-        return repository.findAllByDestination(destination);
-    }
+    //public List<Carrier> findAll(String destination) {
+      //  return repository.findAllByDestination(destination);
+    //}
 
     public void create(String name, String nationality, List<String> flightDestinations, List<Plane> planes) {
         Carrier carrier = Carrier.builder()
                 .name(name)
                 .nationality(nationality)
-                .flightDestinations(flightDestinations)
+                //.flightDestinations(flightDestinations)
                 .planes(planes)
                 .build();
 
