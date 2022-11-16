@@ -10,6 +10,8 @@ import java.util.stream.Collectors;
 
 @Component
 public class DataStore {
+
+    //TODO Create id or auto increment id
     private final Set<Carrier> carriers = new HashSet<>();
     private final Set<Plane> planes = new HashSet<>();
 

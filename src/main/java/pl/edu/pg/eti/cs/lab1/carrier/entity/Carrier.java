@@ -20,13 +20,11 @@ import java.util.List;
 public class Carrier implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
+    private int id;
     private String name;
     private String nationality;
 
     //private List<String> flightDestinations;
     @OneToMany(mappedBy = "carrier")
     private List<Plane> planes;
-
-    public void setPlanes() {
-    }
 }

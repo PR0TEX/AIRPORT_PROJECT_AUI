@@ -3,23 +3,24 @@ package pl.edu.pg.eti.cs.lab1.carrier.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.edu.pg.eti.cs.lab1.carrier.entity.Carrier;
-import pl.edu.pg.eti.cs.lab1.carrier.repository.CarrierRepository;
+import pl.edu.pg.eti.cs.lab1.carrier.repository.ICarrierRepository;
 import pl.edu.pg.eti.cs.lab1.plane.entity.Plane;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class CarrierService {
-    private final CarrierRepository repository;
+    private final ICarrierRepository repository;
 
     @Autowired
-    CarrierService(CarrierRepository carrierRepository) {
+    CarrierService(ICarrierRepository carrierRepository) {
         this.repository = carrierRepository;
     }
 
-    public Optional<Carrier> find(String name) {
-        return repository.find(name);
+    public Optional<Carrier> find(int id) {
+        return repository.findById(id);
     }
 
     public List<Carrier> findAll() {
@@ -40,16 +41,17 @@ public class CarrierService {
 
         create(carrier);
     }
-
-    public void create(Carrier carrier) {
-        repository.create(carrier);
+    @Transactional
+    public Carrier create(Carrier carrier) {
+       return repository.save(carrier);
+       //save ?
     }
-
-    public void delete(String name) {
-        repository.delete(name);
+    @Transactional
+    public void delete(int id) {
+        repository.deleteById(id);
     }
-
+    @Transactional
     public void update(Carrier carrier) {
-        repository.update(carrier);
+        repository.save(carrier);
     }
 }

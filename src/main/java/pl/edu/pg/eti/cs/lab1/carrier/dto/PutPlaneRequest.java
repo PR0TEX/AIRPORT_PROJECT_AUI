@@ -15,14 +15,15 @@ import java.util.function.Function;
 @ToString
 @EqualsAndHashCode
 public class PutPlaneRequest {
-    private String carrier;
+    private int carrierId;
     private int maxWeightPayload;
 
     public static BiFunction<Plane, PutPlaneRequest, Plane> dtoToEntityUpdater(
-            Function<String, Carrier> carrierFunction) {
+            Function<Integer, Carrier> carrierFunction) {
         return (plane, request) -> {
             plane.setMaxWeightPayload(request.getMaxWeightPayload());
-            plane.setCarrier(carrierFunction.apply(request.getCarrier()));
+            //TODO maybe creation of plane
+            plane.setCarrier(carrierFunction.apply(request.getCarrierId()));
             return plane;
         };
     }

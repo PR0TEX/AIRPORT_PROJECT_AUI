@@ -18,13 +18,13 @@ import java.util.function.Function;
 @EqualsAndHashCode
 public class PutCarrierRequest {
     private String name;
-    private String plane;
+    private int planeID;
 
     public static BiFunction<Carrier, PutCarrierRequest, Carrier> dtoToEntityUpdater(
-            Function<String, Plane> planeFunction){
+            Function<Integer, Plane> planeFunction){
         return ((carrier, request) -> {
             carrier.setName(request.getName());
-            carrier.setPlanes(new ArrayList<Plane>(Arrays.asList(planeFunction.apply(request.getPlane()))));
+            carrier.setPlanes(new ArrayList<Plane>(Arrays.asList(planeFunction.apply(request.getPlaneID()))));
             return carrier;
         });
     }

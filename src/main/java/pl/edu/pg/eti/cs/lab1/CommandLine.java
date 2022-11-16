@@ -52,11 +52,11 @@ public class CommandLine implements CommandLineRunner {
                     System.out.println("Enter Plane or Carrier");
                     category = scanner.nextLine();
                     if (category.equals("Plane")) {
-                        System.out.println("Enter id");
+                        System.out.println("Enter plane's id");
                         planeService.delete(scanner.nextInt());
                     } else if (category.equals("Carrier")) {
-                        System.out.println("Enter the name");
-                        carrierService.delete(scanner.nextLine());
+                        System.out.println("Enter carrier's id");
+                        carrierService.delete(scanner.nextInt());
                     } else {
                         throw new IllegalArgumentException(
                                 String.format("The category \"%s\" does not exist", category));

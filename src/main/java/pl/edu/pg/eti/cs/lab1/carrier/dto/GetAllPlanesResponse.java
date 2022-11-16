@@ -1,6 +1,7 @@
 package pl.edu.pg.eti.cs.lab1.carrier.dto;
 
 import lombok.*;
+import pl.edu.pg.eti.cs.lab1.plane.entity.Plane;
 
 import java.util.Collection;
 import java.util.List;
@@ -30,7 +31,7 @@ public class GetAllPlanesResponse {
     @Singular
     private List<PlaneEntry> planes;
 
-    public static Function<Collection<PlaneEntry>, GetAllPlanesResponse> entityToDtoMapper() {
+    public static Function<Collection<Plane>, GetAllPlanesResponse> entityToDtoMapper() {
         return planes -> {
             GetAllPlanesResponseBuilder response = GetAllPlanesResponse.builder();
             planes.stream()
