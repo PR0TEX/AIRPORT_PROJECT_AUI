@@ -14,6 +14,8 @@ import pl.edu.pg.eti.cs.lab1.plane.service.PlaneService;
 
 import java.util.Optional;
 
+@RestController
+@RequestMapping("api/planes")
 public class PlaneController {
     private final PlaneService planeService;
     private final CarrierService carrierService;
@@ -36,7 +38,7 @@ public class PlaneController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> postPlane(@RequestBody PostPlaneRequest request,
+    public ResponseEntity<Void> postPlanes(@RequestBody PostPlaneRequest request,
                                           UriComponentsBuilder builder) {
         Plane plane = PostPlaneRequest
                 .dtoToEntityMapper()

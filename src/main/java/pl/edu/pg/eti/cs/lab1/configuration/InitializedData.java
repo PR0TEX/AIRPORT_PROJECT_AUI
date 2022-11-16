@@ -38,7 +38,7 @@ public class InitializedData {
                 "lufthansa",
                 "Germany",
                 new ArrayList<String>(Arrays.asList("Paris", "London")),
-                new ArrayList<Plane>(Arrays.asList(planeService.findAll().get(2), planeService.findAll().get(3), planeService.findAll().get(4)))
+                new ArrayList<Plane>(Arrays.asList(planeService.findAll().get(2), planeService.findAll().get(3)))
         );
         carrierService.create(
                 "lot",

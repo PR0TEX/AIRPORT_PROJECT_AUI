@@ -17,7 +17,8 @@ import java.io.Serializable;
 @Entity
 @Table(name = "planes")
 public class Plane implements Serializable {
-    @Id //TODO add autogeneration
+    @Id
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private int id;
     private String manufacturer;
     private String model;
