@@ -37,7 +37,7 @@ public class CommandLine implements CommandLineRunner {
                     if (category.equals("Plane")) {
                         planeService.findAll().forEach(System.out::println);
                     } else if (category.equals("Carrier")) {
-                        carrierService.findAll().forEach(System.out::println);
+                        carrierService.findAll().forEach(carrier -> System.out.println(carrier.getPlanes()));
                     } else {
                         throw new IllegalArgumentException(
                                 String.format("The category \"%s\" does not exist", category));
