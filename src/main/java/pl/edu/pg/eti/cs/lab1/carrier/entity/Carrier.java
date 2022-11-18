@@ -23,7 +23,6 @@ public class Carrier implements Serializable {
     private int id;
     private String name;
     private String nationality;
-
     //private List<String> flightDestinations;
     @OneToMany(mappedBy = "carrier", cascade = CascadeType.REMOVE)
     @Transient

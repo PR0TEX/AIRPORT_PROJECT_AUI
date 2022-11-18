@@ -14,13 +14,15 @@ import java.util.function.Function;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @ToString
 @EqualsAndHashCode
-public class PutPlaneRequest {
+public class PutPlaneCarrierRequest {
+    private int carrierId;
     private int maxWeightPayload;
-    private int maxPeoplePayload;
-    public static BiFunction<Plane, PutPlaneRequest, Plane> dtoToEntityUpdater(){
+
+    public static BiFunction<Plane, PutPlaneCarrierRequest, Plane> dtoToEntityUpdater(
+            Function<Integer, Carrier> carrierFunction) {
         return (plane, request) -> {
             plane.setMaxWeightPayload(request.getMaxWeightPayload());
-            plane.setMaxPeoplePayload(request.getMaxPeoplePayload());
+            plane.setCarrier(carrierFunction.apply(request.getCarrierId()));
             return plane;
         };
     }

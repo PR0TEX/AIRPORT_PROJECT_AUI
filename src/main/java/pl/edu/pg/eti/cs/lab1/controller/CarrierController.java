@@ -72,12 +72,4 @@ public class CarrierController {
             return ResponseEntity.notFound().build();
         }
     }
-
-    @GetMapping("{id}/planes")
-    public ResponseEntity<GetAllPlanesResponse> getCarrierPlane(@PathVariable("id") int id){
-        Optional<Carrier> carrierPromise = carrierService.find(id);
-        return carrierPromise.map(value -> ResponseEntity.ok(GetAllPlanesResponse.entityToDtoMapper().apply(planeService.findAll(value))))
-                .orElseGet(() -> ResponseEntity.notFound().build());
-    }
-
 }

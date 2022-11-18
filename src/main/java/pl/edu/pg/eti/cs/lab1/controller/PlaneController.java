@@ -41,7 +41,7 @@ public class PlaneController {
     public ResponseEntity<Void> postPlanes(@RequestBody PostPlaneRequest request,
                                           UriComponentsBuilder builder) {
         Plane plane = PostPlaneRequest
-                .dtoToEntityMapper()
+                .dtoToEntityMapper(() -> null)
                 .apply(request);
         plane = planeService.create(plane);
         return ResponseEntity.created(builder.pathSegment("api","planes","{id}")
@@ -54,7 +54,7 @@ public class PlaneController {
         Optional<Plane> plane = planeService.find(id);
         if(plane.isPresent()) {
             PutPlaneRequest
-                    .dtoToEntityUpdater(carrierId -> carrierService.find(carrierId).orElseThrow())
+                    .dtoToEntityUpdater()
                     .apply(plane.get(), request);
             planeService.update(plane.get());
             return ResponseEntity.accepted().build();
