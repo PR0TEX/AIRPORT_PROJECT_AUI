@@ -2,6 +2,7 @@ package pl.edu.pg.eti.cs.lab1.plane.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pl.edu.pg.eti.cs.lab1.carrier.entity.Carrier;
 import pl.edu.pg.eti.cs.lab1.plane.entity.Plane;
 import pl.edu.pg.eti.cs.lab1.plane.repository.IPlaneRepository;
 
@@ -24,6 +25,10 @@ public class PlaneService {
 
     public List<Plane> findAll() {
         return repository.findAll();
+    }
+
+    public List<Plane> findAll(Carrier carrier) {
+        return repository.findAllByCarrier(carrier);
     }
     @Transactional
     public void create(String manufacturer, String model, int maxWeightPayload, int maxPeoplePayload) {

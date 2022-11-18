@@ -4,10 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
-import pl.edu.pg.eti.cs.lab1.carrier.dto.GetAllCarriersResponse;
-import pl.edu.pg.eti.cs.lab1.carrier.dto.GetCarrierResponse;
-import pl.edu.pg.eti.cs.lab1.carrier.dto.PostCarrierRequest;
-import pl.edu.pg.eti.cs.lab1.carrier.dto.PutCarrierRequest;
+import pl.edu.pg.eti.cs.lab1.carrier.dto.*;
 import pl.edu.pg.eti.cs.lab1.carrier.entity.Carrier;
 import pl.edu.pg.eti.cs.lab1.carrier.service.CarrierService;
 import pl.edu.pg.eti.cs.lab1.plane.service.PlaneService;
@@ -77,15 +74,9 @@ public class CarrierController {
     }
 
     @GetMapping("{id}/planes")
-    public ResponseEntity getCarrierPlane(@PathVariable("id") int id){
-//        Optional<Carrier> carrierPromise =
-//        carrierPromise.stream().forEach(System.out::println);
-//        return carrierService.find(id)
-//                .map(carrier -> ResponseEntity.ok(GetCarrierResponse.entityToDtoMapper().apply(carrier)))
-//                .orElseGet(() -> ResponseEntity.notFound().build());
-
-        return carrierService.find(id)
-                .map(carrier -> ResponseEntity.ok(carrier.getPlanes().get(1)))
+    public ResponseEntity<GetAllPlanesResponse> getCarrierPlane(@PathVariable("id") int id){
+        Optional<Carrier> carrierPromise = carrierService.find(id);
+        return carrierPromise.map(value -> ResponseEntity.ok(GetAllPlanesResponse.entityToDtoMapper().apply(planeService.findAll(value))))
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
