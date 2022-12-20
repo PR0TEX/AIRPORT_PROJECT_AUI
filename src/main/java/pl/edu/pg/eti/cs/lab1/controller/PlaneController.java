@@ -40,8 +40,9 @@ public class PlaneController {
     @PostMapping
     public ResponseEntity<Void> postPlanes(@RequestBody PostPlaneRequest request,
                                           UriComponentsBuilder builder) {
+
         Plane plane = PostPlaneRequest
-                .dtoToEntityMapper(() -> null)
+                .dtoToEntityMapper(c -> carrierService.find(c).orElseThrow())
                 .apply(request);
         plane = planeService.create(plane);
         return ResponseEntity.created(builder.pathSegment("api","planes","{id}")

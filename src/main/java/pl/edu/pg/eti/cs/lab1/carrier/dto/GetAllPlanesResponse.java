@@ -1,8 +1,8 @@
 package pl.edu.pg.eti.cs.lab1.carrier.dto;
 
 import lombok.*;
+import pl.edu.pg.eti.cs.lab1.carrier.entity.Carrier;
 import pl.edu.pg.eti.cs.lab1.plane.entity.Plane;
-
 import java.util.Collection;
 import java.util.List;
 import java.util.function.Function;

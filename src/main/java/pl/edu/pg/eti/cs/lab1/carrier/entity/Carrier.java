@@ -5,6 +5,7 @@ import lombok.experimental.SuperBuilder;
 import pl.edu.pg.eti.cs.lab1.plane.entity.Plane;
 
 import javax.persistence.*;
+import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.util.List;
 
@@ -23,8 +24,12 @@ public class Carrier implements Serializable {
     private int id;
     private String name;
     private String nationality;
-    //private List<String> flightDestinations;
+
     @OneToMany(mappedBy = "carrier", cascade = CascadeType.REMOVE)
-    @Transient
+    @ToString.Exclude
     private List<Plane> planes;
+
+    public void addPlane(Plane plane){
+        this.getPlanes().add(plane);
+    }
 }

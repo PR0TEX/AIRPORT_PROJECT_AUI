@@ -25,6 +25,6 @@ public class Plane implements Serializable {
     private int maxWeightPayload;
     private int maxPeoplePayload;
     @ManyToOne
-    @JoinColumn(name="carrier")
+    @JoinColumn(name = "carrier")
     private Carrier carrier;
 }

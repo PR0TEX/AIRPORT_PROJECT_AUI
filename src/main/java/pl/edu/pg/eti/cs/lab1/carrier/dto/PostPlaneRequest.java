@@ -19,12 +19,23 @@ public class PostPlaneRequest {
     private String model;
     private int maxWeightPayload;
     private int maxPeoplePayload;
+    private int carrier;
 
-    public static Function<PostPlaneRequest, Plane> dtoToEntityMapper(Supplier<Carrier> carrierSupplier){
+//    public static Function<PostPlaneRequest, Plane> dtoToEntityMapper(Supplier<Carrier> carrierSupplier){
+//        return request -> Plane.builder()
+//                .manufacturer(request.getManufacturer())
+//                .model(request.getModel())
+//                .carrier(carrierSupplier.get())
+//                .maxWeightPayload(request.getMaxWeightPayload())
+//                .maxPeoplePayload(request.getMaxPeoplePayload())
+//                .build();
+//    }
+
+    public static Function<PostPlaneRequest, Plane> dtoToEntityMapper(Function<Integer, Carrier> carrierFunction) {
         return request -> Plane.builder()
                 .manufacturer(request.getManufacturer())
                 .model(request.getModel())
-                .carrier(carrierSupplier.get())
+                .carrier(carrierFunction.apply(request.getCarrier()))
                 .maxWeightPayload(request.getMaxWeightPayload())
                 .maxPeoplePayload(request.getMaxPeoplePayload())
                 .build();

@@ -44,18 +44,7 @@ public class PlaneService {
     public List<Plane> findAll(Carrier carrier) {
         return planeRepository.findAllByCarrier(carrier);
     }
-    @Transactional
-    public void create(String manufacturer, String model, int maxWeightPayload, int maxPeoplePayload) {
-        Plane plane = Plane.builder()
-                .id(id++)
-                .manufacturer(manufacturer)
-                .model(model)
-                .maxWeightPayload(maxWeightPayload)
-                .maxPeoplePayload(maxPeoplePayload)
-                .build();
 
-        create(plane);
-    }
     @Transactional
     public Plane create(Plane plane) {
         return planeRepository.save(plane);

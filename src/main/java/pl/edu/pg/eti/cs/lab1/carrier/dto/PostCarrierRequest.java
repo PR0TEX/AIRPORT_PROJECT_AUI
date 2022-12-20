@@ -16,7 +16,6 @@ public class PostCarrierRequest {
     private String name;
     private String nationality;
     public static Function<PostCarrierRequest, Carrier> dtoToEntityMapper(){
-        //TODO add flightDestinations
         return request -> Carrier.builder()
                 .name(request.getName())
                 .nationality(request.getNationality())

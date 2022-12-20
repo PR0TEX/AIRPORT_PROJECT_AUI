@@ -9,33 +9,33 @@ import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-@Component
+//@Component
 public class InitializedData {
-    private final PlaneService planeService;
-    private final CarrierService carrierService;
-
-    @Autowired
-    InitializedData(PlaneService planeService, CarrierService carrierService) {
-        this.planeService = planeService;
-        this.carrierService = carrierService;
-    }
-
-    @PostConstruct
-    private synchronized void init() {
-        Plane p1 = Plane.builder().manufacturer("Boeing").model("737").maxWeightPayload(10).maxPeoplePayload(150).build();
+//    private final PlaneService planeService;
+//    private final CarrierService carrierService;
+//
+//    @Autowired
+//    InitializedData(PlaneService planeService, CarrierService carrierService) {
+//        this.planeService = planeService;
+//        this.carrierService = carrierService;
+//    }
+//
+//    @PostConstruct
+//    private synchronized void init() {
+//        Plane p1 = Plane.builder().manufacturer("Boeing").model("737").maxWeightPayload(10).maxPeoplePayload(150).build();
 //        planeService.create("Boeing", "737", 10, 150);
-        planeService.create(p1);
-        planeService.create("Boeing", "747", 15, 200);
+//        planeService.create(p1);
+//        planeService.create("Boeing", "747", 15, 200);
 //        planeService.create("Boeing", "737", 10, 150);
 //        planeService.create("Airbus", "A300", 8, 120);
 //        planeService.create("Boeing", "737", 15, 280);
 
-        carrierService.create(
-                "ryanair",
-                "Ireland",
-                new ArrayList<String>(Arrays.asList("Poland", "England")),
-                new ArrayList<Plane>(Arrays.asList(p1))
-        );
+//        carrierService.create(
+//                "ryanair",
+//                "Ireland",
+//                new ArrayList<String>(Arrays.asList("Poland", "England")),
+//                new ArrayList<Plane>(Arrays.asList(p1))
+//        );
 //        carrierService.create(
 //                "lufthansa",
 //                "Germany",
@@ -48,5 +48,5 @@ public class InitializedData {
 //                new ArrayList<String>(Arrays.asList("Poland", "Spain")),
 //                new ArrayList<Plane>()
 //        );
-    }
+//    }
 }

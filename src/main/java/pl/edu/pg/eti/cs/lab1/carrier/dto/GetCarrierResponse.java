@@ -2,7 +2,9 @@ package pl.edu.pg.eti.cs.lab1.carrier.dto;
 
 import lombok.*;
 import pl.edu.pg.eti.cs.lab1.carrier.entity.Carrier;
+import pl.edu.pg.eti.cs.lab1.plane.entity.Plane;
 
+import java.util.List;
 import java.util.function.Function;
 
 @Getter
@@ -14,12 +16,10 @@ import java.util.function.Function;
 @EqualsAndHashCode
 public class GetCarrierResponse {
     private int id;
-    private String name;
     private String nationality;
 
     public static Function<Carrier, GetCarrierResponse> entityToDtoMapper() {
         return carrier -> GetCarrierResponse.builder()
-                .name(carrier.getName())
                 .id(carrier.getId())
                 .nationality(carrier.getNationality())
                 .build();
